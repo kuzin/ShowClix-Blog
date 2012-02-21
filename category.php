@@ -17,9 +17,9 @@ get_header(); ?>
 					printf( __( 'Category Archives: <strong>%s</strong>', 'starkers' ), '' . single_cat_title( '', false ) . '' );
 				?></h1>
 				<?php
-					$category_description = category_description();
-					if ( ! empty( $category_description ) )
-						echo '' . $category_description . '';
+					#$category_description = category_description();
+					#if ( ! empty( $category_description ) )
+					#	echo '' . $category_description . '';
 
 				get_template_part( 'loop', 'category' );
 				?>
