@@ -534,7 +534,7 @@ tfoot th em { color: #f03b58; font-weight: bold; font-size: 1.1em; font-style: n
         .post-thumb {
             width: 250px;
             overflow: hidden;
-            background: green;
+            background: mauve;
             img {
                 width: 100%;
                 height: auto;
@@ -619,5 +619,77 @@ ul.scfw_32px li {
     }
 }
 
+#sidebar-wrap aside ul li ul.no-bullets li {
+	padding: 0 !important;
+	z-index: 20;
+	position:relative;
+	border-bottom: none !important;
+}
 
+#sidebar-wrap aside ul li ul.no-bullets li img {
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+#sidebar-wrap aside ul li ul.no-bullets li a {
+	display: block;	
+	color: #444;
+	z-index: 10;
+	position:relative;
+	float: left;
+	width: 100%;
+	font-family: 'Arvo';
+}
+#sidebar-wrap aside ul li ul.no-bullets li span.time {
+	display: none;
+}
+
+
+iframe {
+    margin-bottom:15px;
+}
+
+aside ul li ul li {
+	padding:  0 !Important;
+	border:0 !important;
+	font-size: 13px;
+	line-height: 17px;
+}
+aside ul li ul li a:after {
+	content:  ' »';
+}
+
+
+ul.no-bullets li a {
+	font-size: 15px;
+	line-height: 18px;
+}
+
+ul.no-bullets li a:after {
+	content: '' !important;
+}
+
+ul.really_simple_twitter_widget li {
+	color:  #555;
+	background: #fff;
+	padding: 10px !important;
+	border-radius: 5px;
+	margin-bottom: 7px !important;
+	font-size: 12px;
+}
+
+ul.really_simple_twitter_widget li a:after {
+	content: '';
+}
+
+div.rstw_link_user a:after {
+	content: ' »';
+}
+
+div.rstw_link_user {
+	font-size: 13px;
+	text-align: center;
+	margin-top: 10px !important;
+	margin-bottom: 12px !important;
+}
 
