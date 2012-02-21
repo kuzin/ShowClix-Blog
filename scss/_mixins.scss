@@ -1,0 +1,499 @@
+// SASS CSS Mixins
+// Mostly by Kuzin
+// Others via interwebs
+// For ShowClix and personal use only!
+
+// @ TODO ⇒
+// # Write more of 'em.
+
+
+
+/* Gloabls
+---------------------------------------- */
+$useIEFilters: 1; // 0 = disabled
+$pie: '/css/PIE.htc';
+$padding : false;
+$dark : rgba(0,0,0,0.5) !default;
+$light : rgba(255,255,255,0.5) !default;
+$ffamily : 'Arial', 'Helvetica Neue', sans-serif !default;
+
+
+
+/* Mixins
+---------------------------------------- */
+
+// Hide Text, yo.
+
+@mixin textHide() {
+    overflow: hidden;
+    text-size: 0;
+    text-indent: -99999px; };
+
+
+// CSS3PIE Integration
+
+@mixin pie {
+    behavior: url($pie);
+}
+
+// Simple reset
+@mixin reset {
+  padding: 0;
+  margin: 0;
+  border: 0; }
+
+// Quick font calls
+@mixin font($weight, $size, $lh: $size, $family: $ffamily) {
+  font: $weight $size $family;
+  line-height: $lh;
+}
+
+// Creates borders?
+@mixin border($size, $style, $width) {
+  border: {
+    size: $size;
+    style: $style;
+    weight: $width; } }
+
+// Working on inline PNG fix (non-hacky) &&
+// Not using filter? Nah. Let's just use this
+// for quick image replacement.
+@mixin png($image, $imagepos : '') {
+    background: url($image) $imagepos;
+}
+
+// Creates a prestyled input
+@mixin input($padding: 8px) {
+  padding: $padding;
+  display: block;
+  border: 2px solid #aaaaaa;
+  outline: none;
+  @include allround(6px);
+  &:hover, &:active, &:focus {
+    border: 2px solid $accent; }
+  &.error {
+    border: 2px solid red;
+    color: red; } }
+
+// Requireds .png class for background images~
+@mixin pngfix() {
+  * html img,
+  * html .png {
+      azimuth: expression(
+          this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
+          this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+          this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src +
+          "', sizingMethod='image')",
+          this.src = "/images/transparent.gif"):(this.origBg =
+            this.origBg? this.origBg :this.currentStyle.backgroundImage.toString()
+            .replace('url("','').replace('")',''),
+          this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg
+          + "', sizingMethod='crop')",
+          this.runtimeStyle.backgroundImage = "none")),this.pngSet=true); } }
+
+
+// Page Curl Test
+@mixin curl() {
+    position: relative;
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset);
+    z-index: 1;
+    &:before,
+    &:after {
+        content: '';
+        z-index: -1;
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        width: 70%;
+        max-width: 300px;
+        height: 55%;
+        @include box-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        @include transform(false, '-6deg', false, '-15deg'); }
+    &:after {
+        left: auto;
+        right: 10px;
+        @include transform(false, '6deg', false, '15deg'); } }
+
+
+// CSS3 Rounded Corners (no IE Support)
+@mixin allround($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -k-border-radius: $radius;
+  -o-border-radius: $radius; }
+
+// Quick Box Shadows (no IE support)
+@mixin boxshadow($color, $blur, $pos: 0 0) {
+  box-shadow: $pos $blur $color;
+  -webkit-box-shadow: $pos $blur $color;
+  -moz-box-shadow: $pos $blur $color; }
+@mixin shadow($bs) {
+  box-shadow: $bs;
+  -webkit-box-shadow: $bs;
+  -moz-box-shadow: $bs; }
+@mixin bs($bs, $bs2:null) {
+    box-shadow: $bs, $bs2;
+    -webkit-box-shadow: $bs, $bs2;
+    -moz-box-shadow: $bs, $bs2;
+}
+
+// CSS3 Full Box Shadow
+@mixin box-shadow($x, $y, $offset, $hex, $ie: $useIEFilters) {
+    -moz-box-shadow: $x $y $offset $hex;
+    -o-box-shadow: $x $y $offset $hex;
+    -webkit-box-shadow: $x $y $offset $hex;
+    box-shadow: $x $y $offset $hex;
+    @if $ie == 1 {
+        $iecolor: '#' + red($hex) + green($hex) + blue($hex);
+        /*filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$iecolor}');
+                -ms-filter: quote(progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$iecolor}'));*/ } }
+
+// Creates ellipsis on whitespace (I believe width must be set?)
+@mixin ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -icab-text-overflow: ellipsis;
+    -khtml-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    overflow: hidden !important; }
+
+// Hides last margin on list elements (not fully tested)
+@mixin hide_last_margin {
+    &:last-child {
+        margin-bottom: 0 !important;
+        &:last-child {
+            margin-bottom: 0 !important; } } }
+
+// Easy clearfix
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; } }
+
+
+// Quick letterpress effect (stylized text-shadow)
+@mixin letterpress($color: $light, $blur: 0, $vert: 1px, $hori: 0) {
+  text-shadow: $hori $vert $blur $color;
+  -webkit-text-shadow: $hori $vert $blur $color;
+  -moz-text-shadow: $hori $vert $blur $color; }
+
+@mixin lp($val) {
+    text-shadow: $val;
+    -webkit-text-shadow: $val;
+    -moz-text-shadow: $val; }
+
+// Quick link styles (most useful if set globally)
+@mixin hover-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline; } }
+
+//  Simple link colors
+@mixin link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false) {
+  color: $normal;
+  @if $visited {
+    &:visited {
+      color: $visited; } }
+  @if $focus {
+    &:focus {
+      color: $focus; } }
+  @if $hover {
+    &:hover {
+      color: $hover; } }
+  @if $active {
+    &:active {
+      color: $active; } } }
+
+// Base link style
+@mixin unstyled-link {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+  &:active, &:focus {
+    outline: none; } }
+
+// Yay floats...
+// What you'd think.
+@mixin float-left {
+  @include float(left); }
+
+@mixin float-right {
+  @include float(right); }
+
+@mixin float($side: left) {
+  display: inline;
+  float: unquote($side); }
+
+// Absolute Positioning (not tested)
+@mixin absolute($t: null, $r: null, $b: null, $l: null) {
+    position: absolute;
+    top: $t;
+    right: $r;
+    bottom: $b;
+    left: $l; }
+
+// IE6-7 Transparency
+@mixin transparency($value) {
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" $value * 100 ")";
+    filter: "alpha(opacity=" $value * 100 ")"; }
+
+@mixin simplegrad($from: #f3f2f3, $to: #b1b1b1) {
+    background-color: $from;
+    background-image: linear-gradient(top, $from, $to);
+    background-image: -moz-linear-gradient(top, $from, $to);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+    background-image: -o-linear-gradient(top, $from, $to);
+}
+
+// CSS3 Gradient Collection
+@mixin gradient($from: #f3f2f3, $to: #b1b1b1) {
+        background-color: $from;
+        background-image: linear-gradient(top, $from, $to);
+        background-image: -moz-linear-gradient(top, $from, $to);
+        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+        background-image: -o-linear-gradient(top, $from, $to);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+        -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}'));
+        -pie-background: linear-gradient($from, $to); }
+
+@mixin darkGrad($baseColor: #3a3a3a, $firstStop: #1e1e1e, $secondStop: #141414, $toColor: black, $one: 0%, $two: 50%, $three: 51%, $four: 100%, $ie: $useIEFilters) {
+    @if $ie !=1 {
+       background-color: $toColor; }
+    background:
+        -moz-linear-gradient(top, $baseColor $one, $firstStop $two, $secondStop $three, $toColor $four);
+    background:
+        -webkit-gradient(linear, left top, left bottom, color-stop($one, $baseColor),
+        color-stop($two, $firstStop), color-stop($three, $secondStop), color-stop($four, $toColor));
+    background: -o-linear-gradient(top, $baseColor $one, $firstStop $two, $secondStop $three, $toColor $four);
+    background: linear-gradient(top, $baseColor $one, $firstStop $two, $secondStop $three, $toColor $four);
+    @if $ie == 1 {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$baseColor}', endColorstr='#{$toColor}',GradientType=0 );
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$baseColor}', endColorstr='#{$toColor}')"; } };
+
+
+@mixin stripes($bg_color: blue, $size: 20px 20px, $tp: 0) { // No IE Support
+
+    $op : $tp * 0.2;
+
+    background-color: $bg_color;
+    background-image:
+        -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, rgba(255, 255, 255, $op)),
+            color-stop(0.25, transparent), color-stop(0.5, transparent),
+            color-stop(0.5, rgba(255, 255, 255, $op)),
+            color-stop(0.75, rgba(255, 255, 255, $op)),
+            color-stop(0.75, transparent), to(transparent));
+    background-image:
+        -moz-linear-gradient(-45deg,
+            rgba(255, 255, 255, $op) 25%, transparent 25%, transparent 50%,
+            rgba(255, 255, 255, $op) 50%,
+            rgba(255, 255, 255, $op) 75%, transparent 75%, transparent);
+    background-image:
+        -o-linear-gradient(-45deg,
+            rgba(255, 255, 255, $op) 25%, transparent 25%, transparent 50%,
+            rgba(255, 255, 255, $op) 50%,
+            rgba(255, 255, 255, $op) 75%, transparent 75%, transparent);
+    background-image:
+        linear-gradient(-45deg,
+            rgba(255, 255, 255, $op) 25%, transparent 25%, transparent 50%,
+            rgba(255, 255, 255, $op) 50%,
+            rgba(255, 255, 255, $op) 75%, transparent 75%, transparent);
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    background-size: $size;
+};
+
+// CSS3 RGBA integration (limited IE functionality)
+@mixin rgba($hex, $alpha, $ie: $useIEFilters) {
+    @if $ie == 1 {
+        $hexopac: '#' + ceil((($alpha * 255)/16) *10) + $hex;
+        background-color: none;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$hexopac}',EndColorStr='#{$hexopac}}');
+        -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$hexopac}',EndColorStr='#{$hexopac}')); }
+    @else {
+        background-color: $hex;
+        background-color: rgba(red($hex), green($hex), blue($hex), $alpha); } }
+
+// Transparency (not tested)
+@mixin transparent($value) {
+    opacity: $value;
+    $newval : $value * 100;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity='#{$newval}')";
+    filter: "alpha(opacity='#{$newval}')";
+    zoom: 1 }
+
+// Rotation (no IE hack)
+@mixin rotate ($deg) {
+    -moz-transform: rotate(#{$deg}deg);
+    -o-transform: rotate(#{$deg}deg);
+    -webkit-transform: rotate(#{$deg}deg) }
+
+// CSS3 Transition (no IE hack)
+@mixin transition ($value) {
+    -moz-transition: $value;
+    -o-transition: $value;
+    -webkit-transition: $value;
+    transition: $value }
+
+// CSS3 Rotation by Deg
+@mixin rotate($rotate) {
+    -moz-transform: rotate($rotate);
+    -webkit-transform: rotate($rotate);
+    -o-transform: rotate($rotate);
+    -ms-transform: rotate($rotate);
+    transform: rotate($rotate); }
+
+// CSS3 Transforms (Mostly for reference, better to break into own mixins)
+@mixin transform($scale:false, $rotate:false, $trans:false, $skew: false) {
+    -moz-transform: scale($scale) rotate($rotate) translate($trans) skew($skew);
+    -webkit-transform: scale($scale) rotate($rotate) translate($trans) skew($skew);
+    -o-transform: scale($scale) rotate($rotate) translate($trans) skew($skew);
+    -ms-transform: scale($scale) rotate($rotate) translate($trans) skew($skew);
+    transform: scale($scale) rotate($rotate) translate($trans) skew($skew); }
+
+
+/*
+    Working Space Below! Warning: untested and unstable~~~!
+*/
+
+// Creates a standard button (designed for boxOffice)
+@mixin btn($start: #b1b1b1, $end: #767676, $color: white, $padding: 4px 6px) {
+  @include gradient($start, $end);
+  @include font(bold, 12px);
+  @include letterpress($dark, 1px, -1px, -1px);
+  @include allround(5px);
+  color: $color;
+  padding: $padding;
+  text-decoration: none;
+  border: 1px solid darken($end, 10);
+  &:hover, &:active {
+    @include gradient($end, $start); } }
+
+// Creates a button with inset styles
+@mixin insetBtn($start: #2c2c2c, $end: #1d1d1d, $color: white, $padding: 8px) {
+  @include gradient($start, $end);
+  @include font(bold, 15px);
+  @include letterpress($dark, 1px, -1px, -1px);
+  @include allround(7px);
+  box-shadow: inset 0 0 7px #333333, 0 1px 2px #dddddd;
+  -moz-box-shadow: inset 0 0 7px #333333, inset 0 0 12px red, 0 1px 2px #dddddd;
+  color: $color;
+  padding: $padding;
+  text-decoration: none;
+  &:hover, &:active {
+    @include gradient($end, $start); } }
+
+// Similar to dirBtn, but no arrow
+@mixin rowBtn($baseColor: #b1b1b1, $toColor: #767676, $border: #4F4F4F) {
+    $padding: 10px;
+    z-index: 1;
+    color: white;
+    font-weight: bold;
+    padding: $padding;
+    display: inline-block;
+    position: relative !important;
+    font-size: 1em;
+    font-family: 'Arial';
+    @include allround(5px);
+    @include font(bold, 12px);
+    @include gradient($baseColor, $toColor);
+    border: 1px solid $border;
+    text-decoration: none !important;
+    text-decoration: none !important;
+    @include letterpress($dark);
+    &:hover {
+        @include gradient($toColor, $baseColor);
+    }
+}
+
+    // Creates an iOS styled directional button (testing in progress?!)
+@mixin dirBtn($direction:right, $baseColor: #b1b1b1, $toColor: #767676, $svg:'/css/boxoffice/images/grey-grad.svg', $border: #4F4F4F) {
+    @if $direction == 'right' {
+        $padding: 10px 5px 10px 10px; }
+    @if $direction == 'left' {
+        $padding: 10px 10px 10px 5px; }
+    z-index: 1;
+    padding: $padding;
+    display: inline-block;
+    position: relative !important;
+    font-size: 1em;
+    font-family: 'Arial';
+    @include allround(5px);
+    @include font(bold, 12px);
+    @include gradient($baseColor, $toColor);
+    border: 1px solid $border;
+    text-decoration: none !important;
+    &:hover {
+      @include gradient($toColor, $baseColor);
+      span {
+          @include rotate(-135deg);
+           @if $direction == 'right' {
+                  border-left: 1px solid $border;
+                  border-bottom: 1px solid $border;
+                  border-top: none !important;
+                  border-right: none !important; }
+          @if $direction == 'left' {
+              border-top: 1px solid $border;
+              border-right: 1px solid $border;
+              border-bottom: none !important;
+              border-left: none !important; } } }
+    strong {
+        color: white;
+        font-weight: bold;
+        z-index: 10 !important;
+        position: relative;
+        text-decoration: none !important;
+        @include letterpress($dark); }
+    span {
+        content: " ";
+        @if $direction == 'left' {
+            border-left: 1px solid $border;
+            border-bottom: 1px solid $border; }
+        @if $direction == 'right' {
+            border-top: 1px solid $border;
+            border-right: 1px solid $border; }
+        display: inline-block;
+        z-index: 0;
+        position: absolute;
+        top: 3px;
+        #{$direction}: -11px;
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+        // Grady
+        //background-image: url($svg);
+        -o-background-size: 100% 100%;
+        -moz-background-size: 100% 100%;
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        background-image: -moz-linear-gradient(
+            left top,
+            $baseColor,
+            $toColor );
+        background-image: -webkit-gradient(
+            linear,
+            left top, right bottom,
+            from($baseColor),
+            to($toColor) );
+		// end grady
+        @include rotate(45deg);
+        @include allround(5px); } }
+
+
+/* Experemental Webkit/Moz Animations
+---------------------------------------- */
+// syntax >>
+//      @include key-animation(options);
+//      #selector { @include key(name,duration,count) }
+
+
+
+
+
