@@ -14,7 +14,7 @@ get_header(); ?>
 		the_post();
 ?>
 
-			<h1>
+			<h1 class="category-title">
 <?php if ( is_day() ) : ?>
 				<?php printf( __( 'Daily Archives: %s', 'starkers' ), get_the_date() ); ?>
 <?php elseif ( is_month() ) : ?>
