@@ -15,7 +15,7 @@
 ?>
 
     		<div class='wrap' style="width:960px; margin: 0 auto; padding: 15px 0;">
-                <span id="tos">
+                <span id="tos" style="font-size: 11px; color: #AAA;">
                     Use of ShowClix is subject to our <a href="http://www.showclix.com/tos">Terms of Service</a>.
                     Copyright &copy; <?= date('Y'); ?> ShowClix Inc.
                     All Rights Reserved.
