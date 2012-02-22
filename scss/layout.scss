@@ -574,6 +574,10 @@ ul.scfw_32px li {
     margin: 0;
 }
 
+#comments-closed {
+    padding: 20px 40px;
+    text-align: center;
+}
 
 #searchform {
     position: relative;
@@ -583,6 +587,8 @@ ul.scfw_32px li {
     input[type="text"] {
         width: 100%;
         box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
         padding: 15px 44px 15px 15px;
         outline: none;
         border: 1px solid #cccccc;

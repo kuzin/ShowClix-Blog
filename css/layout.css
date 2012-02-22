@@ -712,6 +712,10 @@ tfoot th em {
 ul.scfw_32px li {
   margin: 0; }
 
+#comments-closed {
+  padding: 20px 40px;
+  text-align: center; }
+
 #searchform {
   position: relative; }
   #searchform label {
@@ -719,6 +723,8 @@ ul.scfw_32px li {
   #searchform input[type="text"] {
     width: 100%;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     padding: 15px 44px 15px 15px;
     outline: none;
     border: 1px solid #cccccc;

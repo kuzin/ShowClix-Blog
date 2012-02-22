@@ -78,7 +78,6 @@
                             </span>
                         <?php endif; ?>
                     </div>
-
 			</footer>
 
 		</article>

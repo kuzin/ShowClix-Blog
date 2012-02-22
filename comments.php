@@ -53,7 +53,7 @@
 
 	if ( ! comments_open() ) :
 ?>
-	<p><?php _e( 'Comments are closed.', 'starkers' ); ?></p>
+	<div id="comments-closed"><p><?php _e( 'Comments are closed.', 'starkers' ); ?></p></div>
 <?php endif; // end ! comments_open() ?>
 
 <?php endif; // end have_comments() ?>
