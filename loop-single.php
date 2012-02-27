@@ -16,12 +16,28 @@
 		      </nav> -->
 
         <? if (has_post_thumbnail($post->ID ) ): ?>
+
             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+
             <?php $videoembed = get_post_meta($post->ID, "videoembed", true); ?>
+            <?php $youtube = get_post_meta($post->ID, "youtube", true); ?>
+            <?php $vimeo = get_post_meta($post->ID, "vimeo", true); ?>
+
 			<? if ($videoembed !== ''): ?>
-				<div class="video_style">
+				<div class="video_style" id="video">
 				    <?= $videoembed; ?>
 				</div>
+			<? elseif ($youtube != ''): ?>
+
+			    <div class="video_style" id="video">
+			        <iframe width="660" height="365"
+			        src="http://www.youtube-nocookie.com/embed/<?=$youtube;?>?version=3&autohide=1&showinfo=0&autoplay=1"
+			        frameborder="0" allowfullscreen></iframe>
+			    </div>
+			<? elseif ($vimeo != ''): ?>
+			    <div class="video_style" id="video">
+
+			    </div>
 			<? else: ?>
     			<div id="featured-image" style="width:660px;"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'starkers' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><img style="width: 100%" src="<?php echo $image[0]; ?>" alt="feature-image-<?=$post->ID?>"/></a></div>
             <? endif; ?>
@@ -29,10 +45,31 @@
         <? else: ?>
             <div id="shim">
                 <?php $videoembed = get_post_meta($post->ID, "videoembed", true); ?>
+                 <?php $youtube = get_post_meta($post->ID, "youtube", true); ?>
+                    <?php $vimeo = get_post_meta($post->ID, "vimeo", true); ?>
     			<? if ($videoembed !== ''): ?>
-    				<div class="video_style">
+    				<div class="video_style" id="video">
     				    <?= $videoembed; ?>
     				</div>
+    			<? elseif ($youtube != ''): ?>
+
+    			<script type="text/javascript">
+        			console.log(window.location.hash);
+                    if (window.location.hash === 'video')
+                        $('#video').append('<iframe width="660" height="365"' +
+    			        'src="http://www.youtube-nocookie.com/embed/<?=$youtube;?>?version=3&autohide=1&showinfo=0&autoplay=1"' +
+    			        'frameborder="0" allowfullscreen></iframe>');
+    			    } else {
+    			        $('#video').append('<iframe width="660" height="365"' +
+    			        'src="http://www.youtube-nocookie.com/embed/<?=$youtube;?>?version=3&autohide=1&showinfo=0"' +
+    			        'frameborder="0" allowfullscreen></iframe>');
+    			    }
+                </script>
+    			    <div class="video_style" id="video"></div>
+    			<? elseif ($vimeo != ''): ?>
+    			    <div class="video_style" id="video">
+                        vimeo
+    			    </div>
                 <? endif; ?>
             </div>
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
