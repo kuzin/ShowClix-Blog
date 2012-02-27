@@ -60,7 +60,7 @@ body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important; }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Droid Sans', Arial;
+  font-family: 'Droid Sans', Arial, sans-serif;
   font-weight: 400; }
 
 body {
@@ -115,7 +115,8 @@ a.green-button {
   -o-border-radius: 5px;
   color: #333 !important;
   text-decoration: none;
-  font-family: 'MuseoSans700';
+  font-family: 'Droid Sans';
+  font-weight: 700;
   font-size: 12px !important;
   display: block;
   text-align: center; }
@@ -151,7 +152,8 @@ a.blue-button {
   -k-border-radius: 5px;
   -o-border-radius: 5px;
   text-decoration: none;
-  font-family: 'MuseoSans700';
+  font-family: 'Droid Sans';
+  font-weight: 700;
   font-size: 12px;
   display: block;
   text-align: center;
@@ -308,7 +310,7 @@ nav {
       .login-nav ul li strong {
         float: left;
         padding-right: 15px;
-        font-family: 'Droid Sans', Arial;
+        font-family: 'Droid Sans', Arial, sans-serif;
         font-size: 14px;
         font-weight: 400;
         line-height: 35px; }
@@ -433,28 +435,29 @@ footer {
   #page-wrap .post h1 a {
     text-decoration: none; }
   #page-wrap .post h1 {
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     color: #346392;
     font-size: 20px;
     line-height: 30px; }
   #page-wrap .post h2 {
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     color: #333;
     font-size: 18px; }
   #page-wrap .post h3 {
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     color: #346392;
     font-size: 16px; }
   #page-wrap .post h4 {
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     color: #333;
     font-size: 16px; }
   #page-wrap .post h5 {
-    font-family: 'MuseoSans700';
+    font-family: 'Droid Sans';
+    font-weight: 700;
     color: #333;
     font-size: 14px; }
   #page-wrap .post h6 {
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     color: #333;
     font-size: 14px; }
   #page-wrap .post ol {
@@ -502,7 +505,7 @@ footer {
     -k-border-radius: 4px;
     -o-border-radius: 4px;
     border: 1px solid #CCC;
-    font-family: 'Droid Sans', Arial;
+    font-family: 'Droid Sans', Arial, sans-serif;
     margin-bottom: 15px !important; }
     #page-wrap .post blockquote p {
       padding: 15px;
@@ -664,7 +667,7 @@ th {
 thead th {
   background: #f4f9fe;
   text-align: center;
-  font: bold 14px "Droid Sans", Arial;
+  font: bold 14px "Droid Sans", Arial, sans-serif;
   color: #66a3d3;
   vertical-align: middle; }
 
@@ -772,8 +775,8 @@ ul.scfw_32px li {
   -moz-text-shadow: 0 1px 0 0 1px 0 white;
   font-size: 14px; }
   .category-title strong {
-    font-family: 'MuseoSans700';
-    font-weight: 400; }
+    font-family: 'Droid Sans';
+    font-weight: 700; }
 
 #sidebar-wrap aside ul li ul.no-bullets li {
   padding: 0 !important;
