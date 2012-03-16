@@ -51,9 +51,8 @@
         <nav>
             <ul id="navbar">
                 <li><a href="http://www.showclix.com/event-ticketing">services</a></li>
-                <li><a href="http://www.showclix.com/event-ticketing-software">products</a></li>
-                <li><a href="http://www.showclix.com/about">who we are</a></li>
-                <li><a href="http://support.showclix.com">contact us</a></li>
+                <li><a href="http://www.showclix.com/about">about</a></li>
+                <li><a href="http://support.showclix.com">support</a></li>
                 <li class="login-nav">
                     <a id="login-a">login <span>&#9660;</span></a>
                     <ul>
