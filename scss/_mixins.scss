@@ -139,15 +139,6 @@ $ffamily : 'Arial', 'Helvetica Neue', sans-serif !default;
 }
 
 // CSS3 Full Box Shadow
-@mixin box-shadow($x, $y, $offset, $hex, $ie: $useIEFilters) {
-    -moz-box-shadow: $x $y $offset $hex;
-    -o-box-shadow: $x $y $offset $hex;
-    -webkit-box-shadow: $x $y $offset $hex;
-    box-shadow: $x $y $offset $hex;
-    @if $ie == 1 {
-        $iecolor: '#' + red($hex) + green($hex) + blue($hex);
-        /*filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$iecolor}');
-                -ms-filter: quote(progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$iecolor}'));*/ } }
 
 // Creates ellipsis on whitespace (I believe width must be set?)
 @mixin ellipsis {

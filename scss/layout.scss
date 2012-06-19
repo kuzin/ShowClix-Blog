@@ -1,7 +1,10 @@
+@import 'compass/css3';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800);
+
 /* Settings / Imports
 ---------------------------------------- */
 
-$sc_imgpath : 'http://www.showclix.com/css';
+$sc_imgpath : '//www.showclix.com/css';
 $imgpath : '../images';
 
 $blue : #3D6692;
@@ -16,16 +19,37 @@ $green : #b4ff00;
 .aligncenter	{ display: block; margin: 0 auto; }
 .alignleft		{ float: left; margin: 0 20px 20px 0; }
 .alignright		{ float: right; margin: 0 0 20px 20px; }
-.wp-caption		{ border: 1px solid #CCC; text-align: center; 
-        background: #eee; padding: 20px; margin: 0 0 15px 0 !important; 
+.wp-caption		{ border: 1px solid #CCC; text-align: center;
+        background: #eee; padding: 20px; margin: 0 0 15px 0 !important;
         @include allround(3px);
-        width: 540px !important; p { 
-        margin: 10px 0 0 0 !important; 
+        width: 540px !important; p {
+        margin: 10px 0 0 0 !important;
         @include letterpress(#FFF);
         color: #aaa !important; font-weight: 700; } }
 .alignleft {
     float: left;
     margin:0 15px 30px 0;
+}
+
+/* Data Icons */
+
+@font-face {
+    font-family: 'IcoMoon';
+    src: url('fonts/IcoMoon.eot');
+    src: url('fonts/IcoMoon.eot?#iefix') format('embedded-opentype'),
+        url('fonts/IcoMoon.svg#IcoMoon') format('svg'),
+        url('fonts/IcoMoon.woff') format('woff'),
+        url('fonts/IcoMoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+    font-family: 'IcoMoon';
+    content: attr(data-icon);
+    speak: none;
+    padding-right: 2px;
 }
 
 
@@ -34,8 +58,8 @@ $green : #b4ff00;
 
 body * { z-index: 10; position: relative; }
 
-body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important; }
-h1, h2, h3, h4, h5 { font-family: 'Droid Sans', Arial, sans-serif; font-weight: 400;}
+body { font-family: 'Open Sans', 'Arial', sans-serif; font-weight: 400; }
+h1, h2, h3, h4, h5 { font-family: 'Open Sans', 'Arial', sans-serif; font-weight: 400;}
 
 body {
     background: url(#{$sc_imgpath}/homepage/img/black-paper.png) top center repeat;
@@ -51,7 +75,7 @@ body {
 
     a, a:link, a:visited { color: $blue; }
     a:hover, a:active { color: darken($blue,10); }
-    
+
     a {
     text-decoration: none;
     transition: color 0.4s linear;
@@ -115,31 +139,14 @@ header  {
     margin: 40px auto 0;
     hgroup {
         width: 300px;
-        h1 {
-            a {
-                @include textHide();
-                background: url(#{$imgpath}/blog.png) no-repeat top left;
-                display: block;
-                width: 178px;
-                height: 40px;
-            }
-        }
-    }
-    nav {
-        z-index: 999999;
-        float: right;
-        ul {
-            li {
-                float: right;
-                background: url(    ../images/blog.png) 0px 0px no-repeat;
-            }
-        }
     }
     #header-image {
-        margin-top: 35px;
+        //margin-top: 35px;
         width: 960px;
-        height: 309px;
-        background: url(#{$imgpath}/header.png) no-repeat top center;
+        height: 230px;
+        margin-top: -20px;
+        margin-bottom: 30px;
+        background: url(#{$imgpath}/header-image.png) no-repeat center center;
         @include allround(5px 5px 0 0);
     }
     h2#ribbon {
@@ -184,85 +191,161 @@ header  {
             font-weight: 700;
             em {
                 font-style: italic;
-            }    
+            }
         }
     }
 }
 
+#logo {
+    @include textHide();
+    background: url(#{$imgpath}/blog.png) no-repeat top left;
+    display: block;
+    width: 178px;
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -20px;
+}
 
 nav {
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     position: relative;
-    ul#navbar {
-        font-family: 'Rokkitt', 'Arvo', serif;
-        float: right;
-        margin: 0;
-        font-weight: normal;
-        font-size: 19px;
-        margin-top: -12px;
-        li {
-            float: left;
-            color: #aaa;
-            margin: 0 !important;
-            border: 0 !important;
-            display: block;
-            float: left;
-            background: transparentize(#000, 1);
-            padding: 20px 10px;
-            text-decoration: none;
-            a {
-                color: #aaa;
-                text-decoration: none;
-                padding: 5px 10px;
-                font-size: 15px;
-                &:hover {
-                    color: $green; } }
-            &.section-selected {
-                a {
-                    color: #fff;
-                    position: relative;
-                    &:before {
-                        content: '';
-                        width: 0;
-                        height: 0;
-                        top: -50px;
-                        left: 50%; } } } } } }
-
-.login-nav {
-    position: relative;
-    &:hover {
-        ul {
-            display: block; } }
-    a {
-        border-radius: 5px;
-        span {
-            font-size: 8px; } }
-    ul {
-        display: none;
-        position: absolute;
-        background: black;
-        right: 10px;
-        width: 327px;
-        list-style:none;
-        margin: 0;
-        padding: 0;
-        border-radius: 5px 0 5px 5px;
-        li {
-            clear: both;
-            a {
-                float: right;
-                padding: 10px 0 !important;
-                width: 200px !important;
-                font-size: 13px; }
-            strong {
+    #navupper {
+        position: relative;
+        top: -15px;
+        font-size: 12px !important;
+        ul.comms {
+            float: right;
+            margin-right: 10px;
+            li {
+                color: #86c937;
                 float: left;
-                padding-right: 15px;
-                font-family: 'Droid Sans', Arial, sans-serif;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 35px; }
-            &:last-child {
-                padding-top: 0 !important; } } } }
+                padding-left: 8px;
+                &.chat {
+                    a {
+                        font-size: 12px !important;
+                    }
+                }
+                strong {
+                    font-weight: 600;
+                    color: white;
+                }
+                a {
+                    color: #aca8b5;
+                    &:hover {
+                        color: #aca8b5;
+                    }
+                }
+            }
+        }
+        ul.subnav {
+            float: right;
+            li {
+                float: left;
+                color: #aca8b5;
+                border-left: 1px solid #645e72;
+                padding-left: 8px;
+                margin-left: 8px;
+                font-size: 10px !important;
+                &:first-child {
+                    border-left: none !important;
+                }
+                a {
+                    font-size: 12px !important;
+                    color: #aca8b5;
+                    &:hover {
+                        color: #aca8b5;
+                    }
+                }
+            }
+        }
+    }
+    #navbar {
+        @include background(linear-gradient(#373e58, #2c3047));
+        @include border-radius(6px);
+        @include clearfix;
+        width: 100%;
+        margin: 0; padding: 0;
+        overflow: hidden;
+        ul {
+            @include clearfix;
+            float: right;
+            margin: 0; padding: 0;
+            overflow: hidden;
+            li {
+                display: inline-block;
+                text-align: right;
+                float: left;
+                cursor: pointer;
+                border-left: 1px solid #1f243a;
+                a {
+                    cursor: pointer;
+                    font-size: 15px;
+                    margin: 0;
+                    display: block;
+                    padding: 22px;
+                    border-left: 1px solid #363c56;
+                    color: white;
+                    font-weight: 600;
+                    letter-spacing: 0.05em;
+                    &:hover {
+                        @include background(linear-gradient(lighten(#373e58, 5), lighten(#2c3047, 5)));
+                    }
+                }
+                &.active {
+                    a {
+                        @include box-shadow(inset -1px 0 0px rgba(0,0,0,0.5));
+                        @include background(linear-gradient(lighten(#1f233a, 5), darken(#1f233a, 0)));
+                        border-left: 1px solid #1f233a;
+                    }
+                }
+            }
+        }
+    }
+    #mobile-nav {
+        display: none;
+        select {
+            display: block;
+            width: 45%;
+            height: 30px;
+            border: 1px solid #000;
+            float: left;
+        }
+        span#or {
+            width: 10%;
+            float: left;
+            text-align: center;
+            display: block;
+            strong {
+                display: inline-block;
+                padding: 5px;
+                text-align: center;
+                font-size: 16px;
+                color: white;
+                font-weight: normal;
+            }
+        }
+        a {
+            width: 45%;
+            height: 30px;
+            line-height: 30px;
+            background: orange;
+            float: left;
+            text-align: center;
+            @include background(linear-gradient(#b6fe14, #8dbf20));
+            @include bs(inset 0 1px 0 #dcff8b, inset 0 -1px 0 #88b826);
+            @include letterpress(#dcff8b);
+            @include border-radius(5px);
+            color: #333;
+            text-decoration: none;
+            font-family: 'Open Sans'; font-weight: 700;
+            &:hover { @include background(linear-gradient(#8dbf20, #8dbf20)); }
+        }
+    }
+    .nav-wrap {
+        width: 960px;
+        margin: 0 auto; } }
 
 #login-a { background: black; }
 .login-nav #login-a:hover { border-radius: 5px 5px 0 0; }
@@ -273,17 +356,15 @@ nav {
 /* Base Layout
 ---------------------------------------- */
 
-#wrapper { 
-    margin-top: -28px;
+#wrapper {
     z-index: 9;
-    padding-top: 28px;
-    background: url(#{$sc_imgpath}/homepage/img/grey-bg.png) top center repeat; 
+    background: url(#{$sc_imgpath}/homepage/img/grey-bg.png) top center repeat;
     float: left; width: 100%;}
 #container {
     position: relative;
     width: 960px;
     margin: 0 auto;
-    #faux-col { background: url(#{$imgpath}/faux-bg.png); float: left; width: 100%;}
+    #faux-col { overflow: hidden; @include border-radius(5px); margin-top: -30px; background: url(#{$imgpath}/faux-bg.png); float: left; width: 100%;}
     #page-wrap {
         width: 660px;
         float: left;
@@ -335,10 +416,10 @@ footer {
         &:after {
             content: '';
             display: block;
-            background: url(#{$imgpath}/toparrow.png) no-repeat top right; 
+            background: url(#{$imgpath}/toparrow.png) no-repeat top right;
             width: 38px; height: 19px;
             position: absolute;
-            bottom:  0px; left: 40px;   
+            bottom:  0px; left: 40px;
             z-index: 60 !important;
         }
     }
@@ -346,10 +427,10 @@ footer {
         &:after {
             content: '';
             display: block;
-            background: url(#{$imgpath}/toparrow.png) no-repeat top left; 
+            background: url(#{$imgpath}/toparrow.png) no-repeat top left;
             width: 38px; height: 19px;
             position: absolute;
-            bottom:  0px; left: 40px;   
+            bottom:  0px; left: 40px;
             z-index: 60 !important;
         }
     }
@@ -358,7 +439,7 @@ footer {
 #FatPandaFacebookComments { padding: 30px 30px 30px 30px; border-top: 1px solid #CCC;}
 
 #page-wrap {
-    nav { 
+    nav {
         padding: 20px;
         background: #efefef;
         height: 14px;
@@ -375,6 +456,10 @@ footer {
         }
     }
     article { padding: 40px 40px; border-bottom: 1px solid #ccc;
+        &:first-child {
+            @include border-radius(5px 0 0 0);
+            overflow: hidden;
+        }
         &:nth-child(2n+1) {
             background: #efefef;
         }
@@ -402,7 +487,7 @@ footer {
         h6 { font-family: 'Droid Sans', Arial, sans-serif; color: #333; font-size: 14px;}
         ol { list-style: decimal !important; margin-left: 20px; margin-bottom: 15px;}
         ul { list-style: disc !important; margin-left: 19px; margin-bottom: 15px;}
-        p { margin: 0 0 15px 0; 
+        p { margin: 0 0 15px 0;
             strong, b { font-weight: 700 }
             em, q, i { font-style: italic }
             del { text-decoration: line-through }
@@ -415,7 +500,7 @@ footer {
             a, a:link, a:visited { color: $blue; }
             a:hover, a:active { color: darken($blue,10); }
         }
-        blockquote { 
+        blockquote {
             clear: both;
             background: #EEE; @include allround(4px);
             border: 1px solid #CCC; font-family: 'Droid Sans', Arial, sans-serif; margin-bottom: 15px !important;
@@ -478,7 +563,7 @@ footer {
 .primary .entry-tags {
 	margin: 0 15px 0 0; }
 .primary .edit-this a,
-.primary .category, 
+.primary .category,
 .primary .author a,
 .primary .comment-count a,
 .primary .published {
@@ -523,14 +608,14 @@ tfoot th { text-align: center; background: #f4f9fe; }
 tfoot th strong { font: bold 1.2em "Century Gothic", "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 0.5em 0.5em 0.5em 0;
 color: #66a3d3; }
 tfoot th em { color: #f03b58; font-weight: bold; font-size: 1.1em; font-style: normal; }
-  
-  
+
+
 /* Sidebar
 ---------------------------------------- */
 
 #sidebar-wrap {
     aside {
-        
+
         .post-thumb {
             width: 250px;
             overflow: hidden;
@@ -540,14 +625,14 @@ tfoot th em { color: #f03b58; font-weight: bold; font-size: 1.1em; font-style: n
                 height: auto;
             }
         }
-        
-        h3 { 
+
+        h3 {
             padding-bottom: 10px;
             margin-bottom: 10px;
             border-bottom: 1px solid #CCC;
             color: #AAA;
             text-shadow: 0 1px 0 white;
-            font-size: 16px;    
+            font-size: 16px;
         }
         ul {
             li {
@@ -638,7 +723,7 @@ ul.scfw_32px li {
 }
 
 #sidebar-wrap aside ul li ul.no-bullets li a {
-	display: block;	
+	display: block;
 	color: #444;
 	z-index: 10;
 	position:relative;

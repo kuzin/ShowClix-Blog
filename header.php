@@ -8,6 +8,19 @@
  * @subpackage Starkers
  * @since Starkers HTML5 3.0
  */
+
+function showclixHours() {
+    $date = ((int) date('N'));
+    $time = ((float) date('G.i'));
+    if (($date <= 2) && ($date > 0)) {
+        if ($time >= 9.00 && $time <= 18.00) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -49,34 +62,30 @@
     <header>
         <?#php wp_nav_menu( array( 'container' => 'nav', 'fallback_cb' => 'starkers_menu', 'theme_location' => 'primary' ) ); ?>
         <nav>
-            <ul id="navbar">
-                <li><a href="http://www.showclix.com/event-ticketing">services</a></li>
-                <li><a href="http://www.showclix.com/about">about</a></li>
-                <li><a href="http://support.showclix.com">support</a></li>
-                <li class="login-nav">
-                    <a id="login-a">login <span>&#9660;</span></a>
-                    <ul>
-                        <li>
-                            <strong>Ticket Buyers:</strong>
-                            <a href="http://www.showclix.com/login"
-                            class="blue-button">Login to pickup tickets »</a>
-                        </li>
-                        <li>
-                            <strong>Ticket Sellers:</strong>
-                            <a href="http://www.showclix.com/admin"
-                            class="green-button">Login to your admin »</a>
-                        </li>
+            <div class="nav-wrap">
+                <div id="navupper">
+                    <ul class="subnav">
+                        <li><a href="/about">Company</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="http://support.showclix.com">Help</a></li>
+                        <li><span data-icon="(" aria-hidden="true"></span> <a href="http://admin.showclix.com/">Client Login</a></li>
                     </ul>
-                </li>
-            </ul>
+                    <ul class="comms">
+                        <li class="phone"><span data-icon="*" aria-hidden="true"></span> <strong>1-888-71-TICKETS</strong></li>
+                        <? if (showclixHours() == 1): ?><li class="chat"><span data-icon=")" aria-hidden="true"></span> <a href="https://livechat.boldchat.com/aid/448460374675876810/bc.chat?resize=true&cbdid=6183825201507076116" target="_blank" onclick="window.open((window.pageViewer && pageViewer.link || function(link){return link;})(this.href + (this.href.indexOf('?')>=0 ? '&amp;' : '?') + 'url=' + escape(document.location.href)), 'Chat367233609785093432', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=480');return false;">Chat Now</a></li><? endif; ?>
+                    </ul>
+                </div>
+                <div id="navbar">
+                    <a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" id="logo" class="png_bg"><?php bloginfo( 'name' ); ?></a>
+                    <ul>
+                        <li <?= ($selected == 'services') ? 'class="active"' : '' ?>><a href="/services">Sell Tickets</a></li>
+                        <li><a href="/search">Find Events</a></li>
+                        <li><a href="/login">My Tickets</a></li>
+                        <li <?= ($selected == 'contact') ? 'class="active"' : '' ?>><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-        <hgroup>
-            <h1>
-                <a href="<?php echo home_url( '/' ); ?>"
-                title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
-                rel="home"><?php bloginfo( 'name' ); ?></a>
-            </h1>
-        </hgroup>
         <a href="<?php echo home_url( '/' ); ?>"><div id="header-image"></div></a>
-        <h2 id="ribbon"><strong>clixr (<em>n</em>);</strong> a lover of live events, tickets, technology, and combining the three.<? #php bloginfo( 'description' ); ?></h2>
+        <!-- <h2 id="ribbon"><strong>clixr (<em>n</em>);</strong> a lover of live events, tickets, technology, and combining the three.<? #php bloginfo( 'description' ); ?></h2> -->
     </header>
