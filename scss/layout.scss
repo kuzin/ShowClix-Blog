@@ -136,7 +136,7 @@ a.big-button {
 
 header  {
     width: 960px;
-    margin: 40px auto 0;
+    margin: 20px auto 0;
     hgroup {
         width: 300px;
     }
@@ -198,7 +198,7 @@ header  {
 
 #logo {
     @include textHide();
-    background: url(#{$imgpath}/blog.png) no-repeat top left;
+    background: url(#{$imgpath}/blog.png) no-repeat center left;
     display: block;
     width: 178px;
     height: 40px;
