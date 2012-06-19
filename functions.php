@@ -397,5 +397,33 @@ if( !function_exists( 'mfields_remove_gallery_setting_div' ) ) {
                 }
             }
 
+// show post thumbnails in feeds
+/*
+function diw_post_thumbnail_feeds($content) {
+    global $post;
+    if(has_post_thumbnail($post->ID)) {
+        $content = '<image>' . get_the_post_thumbnail($post->ID) . '</image>' . $content;
+    }
+    return $content;
+}
+add_filter('the_excerpt_rss', 'diw_post_thumbnail_feeds');
+add_filter('the_content_feed', 'diw_post_thumbnail_feeds');
+*/
+function add_rss_image(){
+    //global $post;
+    return '<crap>crap</crap>';
+/*
+    if(has_post_thumbnail($post->ID)) {
+	echo '<image>';
+        echo '<url>', get_the_post_thumbnail($post->ID), '</url>';
+        echo '<link>', get_the_post_thumbnail($post->ID), '</link>';
+        echo '</image>';
+    }
+*/
+}
 
-
+add_action('rss2_head','add_rss_image');
+add_action('rss_head','add_rss_image');
+add_action('commentsrss2_head','add_rss_image');
+//add_filter('the_excerpt_rss', 'add_rss_image');
+//add_filter('the_content_feed', 'add_rss_image');
