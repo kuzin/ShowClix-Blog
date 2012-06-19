@@ -77,13 +77,13 @@ function showclixHours() {
                 </div>
                 <div id="navbar">
                     <a href="http://www.showclix.com" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" id="logo" class="png_bg"><?php bloginfo( 'name' ); ?></a>
-                    <ul>
-                        <li <?= ($selected == 'services') ? 'class="active"' : '' ?>><a href="/services">Sell Tickets</a></li>
-                        <li><a href="/search">Find Events</a></li>
-                        <li><a href="/login">My Tickets</a></li>
-                        <li <?= ($selected == 'contact') ? 'class="active"' : '' ?>><a href="/contact">Contact Us</a></li>
-                    </ul>
-                </div>
+		    <ul>
+                        <li><a href="http://www.showclix.com/services">Sell Tickets</a></li>
+                        <li><a href="http://www.showclix.com/search">Find Events</a></li>
+                        <li><a href="http://www.showclix.com/login">My Tickets</a></li>
+                        <li><a href="http://www.showclix.com/contact">Contact Us</a></li>
+                    </ul>                
+		</div>
             </div>
         </nav>
         <a href="<?php echo home_url( '/' ); ?>"><div id="header-image"></div></a>
