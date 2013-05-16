@@ -427,3 +427,15 @@ add_action('rss_head','add_rss_image');
 add_action('commentsrss2_head','add_rss_image');
 //add_filter('the_excerpt_rss', 'add_rss_image');
 //add_filter('the_content_feed', 'add_rss_image');
+
+
+function sc_custom_thumbnail() {
+    $thumb = get_field('custom_thumbnail');
+    if ( $thumb ) {
+        ?>
+        <scThumb><?=$thumb?></scThumb>
+        <?
+    }
+}
+
+add_filter( 'rss2_item', 'sc_custom_thumbnail' );
